@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<table class="table table-bordered table-hover" id="tablaCargos">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Descripci&oacute;n</th>
+				<th>Sueldo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="c : ${cargos}">
+				<td th:text="${c.nombre}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td th:text="${c.sueldo}"></td>
+				
+				<td>
+					<button class="btn btn-info btn-sm btnUpdateCargo" data-toggle="modal" data-target="#cargoModal" th:value="${c.idcargo}"><i class="fas fa-pencil-alt"></i></button>
+
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${c.idcargo}"><i class="fas fa-trash"></i></button>
+					
+				</td>
+			</tr>
+		</tbody>
+		
+	</table>
+
+<script th:src="@{/js/cargo/delete.js}"></script>
+<script th:src="@{/js/cargo/update.js}"></script>
+</body>
+</html>

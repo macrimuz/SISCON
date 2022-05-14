@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<table class="table table-hover">
+		<thead class="bg-light">
+			<tr>
+				<th><i class="far fa-address-card"></i>&nbsp;Nombre</th>
+				<th><i class="far fa-money-bill-alt"></i>&nbsp;Monto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="d : ${detalles}">
+				<td th:text="${d.nombre}"></td>
+				<td th:text="${d.monto}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: frgHead"></head>
+
+<body  class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+
+<div class="register-box">
+  
+  <div class="card info-box">
+    <div class="card-body register-card-body">
+    <div class="register-logo">
+	    <b>Registrarse</b>
+	  </div>
+      <p class="login-box-msg">A continuaci&oacute;n ingrese sus datos</p>
+
+      <form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+          		th:errorclass="'form-control is-invalid'"
+          		th:field="*{nombres}" placeholder="Nombres">
+          		<div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-font"></span>
+            </div>
+          </div>
+          		<small class="invalid-feedback" 
+          		th:if="${#fields.hasErrors('nombres')}"
+          		th:errors="*{nombres}"></small>
+          
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+          th:errorclass="'form-control is-invalid'"
+          th:field="*{apellidos}" placeholder="Apellidos" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-font"></span>
+            </div>
+          </div>
+          <small
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('apellidos')}"
+          th:errors="*{apellidos}"></small>
+          
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+			th:errorclass="'form-control is-invalid'"
+			th:field="*{nombre}" placeholder="Nombre de usuario" /> 
+			<div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+			<small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('nombre')}"
+			th:errors="*{nombre}"></small>          
+          
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" 
+			th:errorclass="'form-control is-invalid'"
+			th:field="*{password}" placeholder="Password" />
+			<div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-key"></span>
+            </div>
+          </div>
+			<small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('password')}"
+			th:errors="*{password}"></small>         
+         
+          
+        </div>
+        <div class="input-group mb-3">
+        	<select class="form-control" th:name="rol">
+        	<option value="0" >-- Seleccionar Rol --</option>
+        	<option value="SUP" >Supervisor</option>
+        	<option value="ADMIN" >Administrador</option>
+        	</select>      
+         
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="far fa-dot-circle"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">  
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+          </div>
+          <div class="col-4">
+           <button type="reset" class="btn btn-danger btn-block">Cancelar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+        <div class="row justify-content-center">
+       		<a th:href="@{/login}" class="">Ya tengo una cuenta</a>
+       		
+        </div>
+        
+      </form>
+
+      
+
+      
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="row">
+			<div class="col-12">
+				<div id="success-alert" th:if="${success != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${success}]]*/
+						Swal.fire({
+							title : 'Correcto',
+							text : message,
+							icon : 'success',
+							heightAuto: false
+						})
+						/*]]>*/
+					</script>
+				</div>
+				<div id="error-alert" th:if="${error != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${error}]]*/
+						Swal.fire({
+							title : 'Error',
+							text : message,
+							icon : 'error',
+							heightAuto: false
+						})
+						/*]]>*/
+					</script>
+				</div>
+
+			</div>
+		</div>
+<!-- /.register-box -->
+
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<div th:replace="layout :: frgScripts"></div>
+
+</body>
+</html>
